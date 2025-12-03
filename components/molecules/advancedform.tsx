@@ -71,7 +71,7 @@ export function AdvancedForm() {
       console.log('Form submitted:', formData);
       // Reset form on successful submission
       setTimeout(() => {
-        setFormData({ email: '', name: '', message: '' });
+        setFormData({ email: '', name: '', interest: '', message: '' });
         setTouched({});
         setSubmitted({});
       }, 1000);
