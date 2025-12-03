@@ -2,12 +2,12 @@ import { AccordionItem } from "@/components/molecules/accordionitem"; // Lowerca
 
 export function FAQ() {
   return (
-    <section className="py-32 px-6 max-w-4xl mx-auto">
-      <div className="mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">Frequently asked</h2>
-        <p className="text-lg text-[#8A8F98]">Everything you need to know about Infonaut and our products.</p>
+    <section className="py-32 px-6 max-w-4xl mx-auto scroll-fade-in">
+      <div className="mb-20">
+        <h2 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">Frequently asked</h2>
+        <p className="text-lg text-[#8A8F98] font-medium">Everything you need to know about Infonaut and our products.</p>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-3">
         <AccordionItem title="What is Infonaut?" content="Infonaut is a Venture Studio. We don't just build software; we build entire AI companies (like GroX and Xgent) that function as products. Each venture is independently funded, managed, and deployed." />
         <AccordionItem title="How does Xgent work?" content="Xgent uses autonomous agentic workflows. Unlike a chatbot, Xgent can perform actions: send emails, query databases, update CRMs, manage projects—all without human intervention. It's your 24/7 employee." />
         <AccordionItem title="Can I hire Leancraft for my small business?" content="Absolutely. Leancraft is our consulting arm designed to help SMBs implement elite management systems. We analyze your bottlenecks and implement proven strategies from Uber, Airbnb, and Stripe." />
