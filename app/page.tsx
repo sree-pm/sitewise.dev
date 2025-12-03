@@ -7,9 +7,10 @@ import { LogoCloud } from "@/components/organisms/logocloud";
 import { FeatureSection } from "@/components/organisms/featuresection";
 import { FAQ } from "@/components/organisms/faq";
 import { TechIcon } from "@/components/atoms/techicons";
-import { Shortcut } from "@/components/atoms/shortcut";
+import { Shortcut } from "@/components/atoms/kbd"; // Ensure this matches your renamed file 'kbd.tsx'
 import { ASSETS } from "@/lib/assets";
-import { Zap, Bot, Globe, Cpu, ChevronRight, Star, Command, GitPullRequest, Workflow, ShieldCheck, Twitter, Linkedin, Github, BarChart3, Layers, ArrowRight } from "lucide-react";
+// FIXED: Added 'Terminal' to this list
+import { Zap, Bot, Globe, Cpu, ChevronRight, Star, Command, GitPullRequest, Workflow, ShieldCheck, Twitter, Linkedin, Github, BarChart3, Layers, ArrowRight, Terminal } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
