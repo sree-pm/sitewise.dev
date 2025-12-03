@@ -4,223 +4,265 @@ import { Navbar } from "@/components/organisms/navbar";
 import { BentoCard } from "@/components/molecules/bentocard";
 import { Button } from "@/components/atoms/button";
 import { LogoCloud } from "@/components/organisms/logocloud";
+import { FeatureSection } from "@/components/organisms/featuresection";
 import { FAQ } from "@/components/organisms/faq";
 import { TechIcon } from "@/components/atoms/techicons";
+import { Shortcut } from "@/components/atoms/Shortcut";
 import { ASSETS } from "@/lib/assets";
-import { Zap, Bot, Globe, Cpu, ChevronRight, Star } from "lucide-react";
+import { Zap, Bot, Globe, Cpu, ChevronRight, Star, Command, GitPullRequest, Workflow, ShieldCheck, Twitter, Linkedin, Github, BarChart3, Layers, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-black text-white overflow-x-hidden selection:bg-brand-purple/30 font-sans">
       <Navbar />
 
-      {/* 1. HERO SECTION */}
-      <section className="relative pt-48 pb-32 px-6 flex flex-col items-center text-center max-w-5xl mx-auto overflow-hidden">
-        <div className="mb-8 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300 backdrop-blur-xl animate-fade-in-up hover:bg-white/10 transition-colors cursor-default">
-          <span className="flex h-2 w-2 rounded-full bg-brand-purple mr-2 animate-pulse-slow"></span>
-          Infonaut R&D: Public Preview
+      {/* --- SECTION 1: THE HERO (Linear Exact Match) --- */}
+      <section className="relative pt-40 pb-32 px-6 flex flex-col items-center text-center max-w-[1400px] mx-auto min-h-[90vh] justify-center border-b border-white/5">
+        
+        {/* Northern Lights Glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-brand-purple/20 blur-[120px] rounded-full pointer-events-none -z-10" />
+
+        <div className="animate-fade-in-up">
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-gray-400 hover:bg-white/10 transition-colors cursor-pointer backdrop-blur-md">
+                <span className="flex h-2 w-2 rounded-full bg-brand-purple animate-pulse"></span>
+                Infonaut R&D Release 2.0
+                <span className="w-px h-3 bg-white/10 mx-1"></span>
+                <span className="text-brand-purple">Read the Manifesto</span>
+                <ChevronRight className="h-3 w-3 text-gray-500" />
+            </div>
+
+            <h1 className="text-6xl md:text-[5.5rem] font-bold tracking-tighter text-white mb-8 leading-[1.05] max-w-5xl mx-auto">
+            Infonaut is a purpose-built engine for <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple via-white to-brand-blue">automating the economy.</span>
+            </h1>
+
+            <p className="text-xl md:text-2xl text-[#8A8F98] max-w-2xl mx-auto mb-12 leading-relaxed">
+            Meet the new standard for modern venture building. Streamline growth, 
+            deploy autonomous agents, and execute strategy at the speed of AI.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                <Button size="lg" variant="glow" className="h-12 px-8 text-base shadow-[0_0_40px_-10px_rgba(168,85,247,0.5)]">Start Building</Button>
+                <div className="flex items-center gap-3 text-sm text-[#8A8F98] font-medium px-4 hover:text-white transition-colors cursor-pointer">
+                    <Shortcut keys={['C']} /> <span>to copy manifest</span>
+                </div>
+            </div>
         </div>
 
-        <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-white mb-8 leading-[1.1] animate-fade-in-up delay-100">
-          We build <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple via-brand-pink to-brand-blue">Intelligence</span> <br />
-          for the automated economy.
-        </h1>
-
-        <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-12 leading-relaxed animate-fade-in-up delay-200">
-          Infonaut is a UK-based AI Venture Studio. We engineer autonomous agents, 
-          growth systems, and enterprise infrastructure.
-        </p>
-
-        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-in-up delay-300">
-          <Button size="lg" variant="glow" className="w-full sm:w-auto">
-            Explore Ventures
-          </Button>
-          <Button size="lg" variant="outline" className="w-full sm:w-auto group">
-            About Infonaut <ChevronRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1"/>
-          </Button>
+        {/* Hero Image (The "App" Shot) - Linear Style Tilt */}
+        <div className="mt-24 relative w-full max-w-6xl animate-fade-in-up delay-200 perspective-[2000px]">
+            <div className="rounded-xl border border-white/10 bg-black/50 p-2 backdrop-blur-sm shadow-2xl transform rotate-x-12 hover:rotate-x-0 transition-transform duration-1000">
+                <img src={ASSETS.ventures.xgent} alt="App Interface" className="w-full h-auto rounded-lg opacity-100 border border-white/5 shadow-2xl" />
+            </div>
+            <div className="absolute -bottom-20 left-0 w-full h-[300px] bg-gradient-to-t from-black via-black to-transparent z-10" />
         </div>
-
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-brand-purple/20 blur-[120px] rounded-full pointer-events-none -z-10" />
       </section>
 
-      {/* 2. SOCIAL PROOF */}
-      <LogoCloud />
+      {/* --- SECTION 2: SOCIAL PROOF --- */}
+      <div className="border-b border-white/5 bg-black">
+         <LogoCloud />
+      </div>
 
-      {/* 3. BENTO GRID (THE ECOSYSTEM) */}
-      <section id="products" className="py-24 px-6 max-w-7xl mx-auto border-t border-white/5">
-        <div className="mb-12">
-            <h2 className="text-3xl font-bold text-white mb-4">The Constellation</h2>
-            <p className="text-gray-400">Our ecosystem of specialized AI products.</p>
+      {/* --- SECTION 3: THE "METHOD" (Philosophy) --- */}
+      <section className="py-32 px-6 max-w-[1200px] mx-auto text-center">
+         <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 tracking-tight">The Infonaut Method</h2>
+         <p className="text-xl text-[#8A8F98] max-w-3xl mx-auto leading-relaxed">
+            Most companies hire humans to do robot work. We build robots to do human work.
+            Our "Venture Studio" model allows us to deploy specialized AI agents across 
+            marketing, legal, and engineering verticals simultaneously.
+         </p>
+      </section>
+
+      {/* --- SECTION 4, 5, 6: THE DEEP DIVES (Zig Zag) --- */}
+      <div className="relative border-t border-white/5">
+        <div className="absolute top-0 left-0 w-px h-full bg-gradient-to-b from-transparent via-white/10 to-transparent hidden xl:block left-1/4" />
+        
+        <FeatureSection 
+            align="left"
+            badge="Growth Intelligence"
+            title="GroX: Scale without the grind."
+            description="GroX isn't just an auto-poster. It's a sentient growth engine that analyzes viral hooks, engages with high-value accounts, and converts followers into leads automatically."
+            image={ASSETS.ventures.grox}
+            features={["Sentiment Analysis", "Viral Hook Generator", "Auto-DM Workflows", "Audience Clustering"]}
+            gradient="purple"
+        />
+
+        <FeatureSection 
+            align="right"
+            badge="Autonomous Workforce"
+            title="Xgent: The 24/7 Employee."
+            description="Xgent deploys autonomous agents into your Slack, CRM, and Email. They don't just chat; they perform actions. From finding leads to closing deals, Xgent handles the grunt work."
+            image={ASSETS.ventures.xgent}
+            features={["Multi-Modal Execution", "Enterprise Security", "Slack Integration", "Self-Healing Workflows"]}
+            gradient="blue"
+        />
+
+        <FeatureSection 
+            align="left"
+            badge="Enterprise Strategy"
+            title="Leancraft: Strategy as Code."
+            description="Leancraft democratizes elite management consulting. We use AI to analyze your business bottlenecks and implement the exact systems used by Uber and Airbnb to scale."
+            image={ASSETS.ventures.leancraft}
+            features={["Operational Audit", "AI Implementation", "Team Training", "Metric Tracking"]}
+            gradient="pink"
+        />
+      </div>
+
+      {/* --- SECTION 7: THE "INSIGHTS" GRID (Linear Feature Wall) --- */}
+      <section className="py-32 px-6 border-t border-white/5 bg-white/[0.02]">
+        <div className="max-w-[1400px] mx-auto">
+            <div className="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div>
+                    <h3 className="text-4xl font-bold text-white mb-4">Engineered for Velocity</h3>
+                    <p className="text-[#8A8F98] max-w-xl">We don't build wrappers. We build infrastructure. Our entire stack is designed for sub-millisecond latency and enterprise-grade security.</p>
+                </div>
+                <Button variant="ghost" className="text-brand-purple hover:text-white">View Documentation <ArrowRight className="ml-2 h-4 w-4"/></Button>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-8">
+                {[
+                    { icon: Command, title: "Keyboard First", desc: "Navigate the entire ecosystem without touching your mouse. Speed is a feature." },
+                    { icon: GitPullRequest, title: "Git Integration", desc: "Syncs directly with your existing engineering workflows. Push to deploy." },
+                    { icon: ShieldCheck, title: "SOC2 Security", desc: "Enterprise-grade encryption and data isolation by default. Your data is yours." },
+                    { icon: Workflow, title: "Custom Workflows", desc: "Build your own autonomous agents using our visual builder. No code required." },
+                    { icon: Zap, title: "Real-time Sync", desc: "Data propagates instantly across your entire venture ecosystem using our custom sync engine." },
+                    { icon: Globe, title: "Global Edge", desc: "Deployed on the edge for sub-millisecond latency worldwide." },
+                    { icon: BarChart3, title: "Deep Analytics", desc: "Granular insights into agent performance and ROI tracking." },
+                    { icon: Layers, title: "Multi-Tenant", desc: "Manage multiple organizations and workspaces from a single dashboard." },
+                    { icon: Terminal, title: "API First", desc: "Everything you see in the dashboard is available via our GraphQL API." },
+                ].map((item, i) => (
+                    <div key={i} className="p-8 rounded-xl bg-black border border-white/10 hover:border-brand-purple/50 transition-all group hover:bg-white/[0.02]">
+                        <item.icon className="h-8 w-8 text-[#8A8F98] group-hover:text-white mb-6 transition-colors" />
+                        <h4 className="text-lg font-bold text-white mb-3">{item.title}</h4>
+                        <p className="text-sm text-[#8A8F98] leading-relaxed">{item.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+      </section>
+
+      {/* --- SECTION 8: THE ECOSYSTEM (Bento Grid) --- */}
+      <section id="ventures" className="py-32 px-6 max-w-[1400px] mx-auto border-t border-white/5">
+        <div className="mb-20 text-center">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">The Constellation</h2>
+            <p className="text-xl text-[#8A8F98] max-w-2xl mx-auto">Explore our suite of specialized AI products.</p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[28rem]">
-            
-            {/* GroX */}
-            <BentoCard
-              className="md:col-span-1"
-              title="GroX"
-              description="The AI Growth Engine. Automate your outbound and enrich leads."
-              href="#grox"
-              cta="View Engine"
-              icon={Zap}
-              gradient="purple"
-            >
-               <div className="absolute inset-0 top-32 px-4 pointer-events-none">
-                  {/* UNCOMMENTED: Image is now active */}
-                  <img src={ASSETS.ventures.grox} alt="GroX Dashboard" className="rounded-t-xl border border-white/10 shadow-2xl opacity-90 object-cover w-full h-full" />
-               </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[32rem]">
+            {/* Superflash */}
+            <BentoCard className="md:col-span-1" title="superflash.dev" description="Flashpoint Architecture for instant web builds." href="#superflash" cta="Start Building" icon={Cpu} gradient="gray">
+                 <div className="absolute inset-0 top-32 px-4 pointer-events-none"><img src={ASSETS.ventures.superflash} alt="Superflash" className="rounded-t-xl border border-white/10 opacity-90 object-cover w-full h-full shadow-2xl" /></div>
             </BentoCard>
-            
-            {/* Xgent */}
-            <BentoCard
-              className="md:col-span-2"
-              title="Xgent"
-              description="Autonomous Workforce. Xgent agents handle complex workflows 24/7."
-              href="#xgent"
-              cta="Meet the Agents"
-              icon={Bot}
-              gradient="blue"
-            >
-               <div className="absolute right-0 bottom-0 w-3/4 h-3/4 pointer-events-none translate-x-12 translate-y-12">
-                  <img src={ASSETS.ventures.xgent} alt="Xgent Workflow" className="rounded-tl-2xl border border-white/10 shadow-2xl object-cover w-full h-full" />
-               </div>
-            </BentoCard>
-            
-            {/* a11ygent */}
-            <BentoCard
-              className="md:col-span-1"
-              title="a11ygent"
-              description="Autonomous Accessibility Fixer. Turns github repos compliant automatically."
-              href="#a11ygent"
-              cta="View Demo"
-              icon={Cpu}
-              gradient="green"
-            >
-               <div className="absolute inset-0 top-32 px-4 pointer-events-none">
-                  <img src={ASSETS.ventures.a11ygent} alt="a11ygent" className="rounded-t-xl border border-white/10 opacity-90 object-cover w-full h-full" />
-               </div>
-            </BentoCard>
-
-            {/* Farewills */}
-            <BentoCard
-              className="md:col-span-1"
-              title="Farewills"
-              description="AI Estate Planning. Solicitor-grade wills and probate management."
-              href="#farewills"
-              cta="Learn More"
-              icon={Globe}
-              gradient="gray"
-            >
-               <div className="absolute inset-0 top-32 px-4 pointer-events-none">
-                  <img src={ASSETS.ventures.farewills} alt="Farewills" className="rounded-t-xl border border-white/10 opacity-90 object-cover w-full h-full" />
-               </div>
-            </BentoCard>
-            
-             {/* Superflash */}
-            <BentoCard
-              className="md:col-span-1"
-              title="superflash.dev"
-              description="Flashpoint Architecture. Multistep AI website generation."
-              href="#superflash"
-              cta="Start Building"
-              icon={Cpu}
-              gradient="gray"
-            >
-                 <div className="absolute inset-0 top-32 px-4 pointer-events-none">
-                   <img src={ASSETS.ventures.superflash} alt="Superflash" className="rounded-t-xl border border-white/10 opacity-90 object-cover w-full h-full" />
-               </div>
-            </BentoCard>
-
             {/* LetsRewise */}
-            <BentoCard
-              className="md:col-span-2"
-              title="LetsRewise"
-              description="Gamified Intelligence. Master any exam (SQE, ACCA) with AI-generated skill trees."
-              href="#letsrewise"
-              cta="Start Learning"
-              icon={Star}
-              gradient="teal"
-            >
-               <div className="absolute inset-0 top-32 px-4 pointer-events-none">
-                  <img src={ASSETS.ventures.letsrewise} alt="LetsRewise Dashboard" className="rounded-t-xl border border-white/10 opacity-90 shadow-2xl object-cover w-full h-full" />
-               </div>
+            <BentoCard className="md:col-span-2" title="LetsRewise" description="Gamified Intelligence. Master any exam with AI skill trees." href="#letsrewise" cta="Start Learning" icon={Star} gradient="teal">
+               <div className="absolute right-0 top-0 w-3/4 h-full pointer-events-none"><img src={ASSETS.ventures.letsrewise} alt="LetsRewise" className="rounded-l-xl border-l border-white/10 opacity-90 shadow-2xl object-cover w-full h-full" /></div>
+            </BentoCard>
+            {/* a11ygent */}
+            <BentoCard className="md:col-span-2" title="a11ygent" description="Autonomous Accessibility Fixer. Turns github repos compliant automatically." href="#a11ygent" cta="View Demo" icon={Cpu} gradient="green">
+               <div className="absolute right-0 bottom-0 w-3/4 h-3/4 pointer-events-none translate-x-8 translate-y-8"><img src={ASSETS.ventures.a11ygent} alt="a11ygent" className="rounded-tl-2xl border border-white/10 opacity-90 object-cover w-full h-full shadow-2xl" /></div>
+            </BentoCard>
+            {/* Farewills */}
+            <BentoCard className="md:col-span-1" title="Farewills" description="AI Estate Planning." href="#farewills" cta="Learn More" icon={Globe} gradient="gray">
+               <div className="absolute inset-0 top-32 px-4 pointer-events-none"><img src={ASSETS.ventures.farewills} alt="Farewills" className="rounded-t-xl border border-white/10 opacity-90 object-cover w-full h-full shadow-2xl" /></div>
             </BentoCard>
         </div>
       </section>
 
-      {/* 4. TECH STACK (3D FEEL) */}
-      <section className="py-24 bg-black border-y border-white/10 overflow-hidden relative">
-         <div className="absolute inset-0 bg-brand-blue/5 blur-3xl pointer-events-none" />
-         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-            <h2 className="text-2xl font-bold text-white mb-12">Engineered on the Modern Stack</h2>
-            <div className="flex flex-wrap justify-center gap-12 opacity-70">
-                <div className="flex flex-col items-center gap-4">
-                    <TechIcon name="NextJS" className="h-12 w-12 text-white" />
-                    <span className="text-xs font-mono text-gray-500">Next.js 14</span>
-                </div>
-                <div className="flex flex-col items-center gap-4">
-                     <TechIcon name="TypeScript" className="h-12 w-12 text-blue-400" />
-                     <span className="text-xs font-mono text-gray-500">TypeScript</span>
-                </div>
-                 <div className="flex flex-col items-center gap-4">
-                     <TechIcon name="React" className="h-12 w-12 text-cyan-400" />
-                     <span className="text-xs font-mono text-gray-500">React</span>
-                </div>
-                 <div className="flex flex-col items-center gap-4">
-                     <TechIcon name="OpenAI" className="h-12 w-12 text-green-400" />
-                     <span className="text-xs font-mono text-gray-500">OpenAI</span>
-                </div>
+      {/* --- SECTION 9: THE QUOTE (Founder) --- */}
+      <section className="py-32 px-6 border-t border-white/5">
+        <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-block p-1 rounded-full border border-white/10 bg-white/5 mb-8">
+                {/* UNCOMMENT FOR REAL PHOTO: <img src={ASSETS.team.founder} alt="Founder" className="h-16 w-16 rounded-full grayscale hover:grayscale-0 transition-all" /> */}
+                <div className="h-16 w-16 rounded-full bg-gradient-to-br from-brand-purple to-brand-blue" />
             </div>
-         </div>
-      </section>
-
-      {/* 5. FAQ */}
-      <FAQ />
-
-      {/* 6. FOUNDER STATEMENT */}
-      <section className="py-24 px-6">
-        <div className="max-w-3xl mx-auto">
-            <div className="relative rounded-2xl border border-white/10 bg-white/5 p-8 backdrop-blur-sm">
-                <div className="absolute -top-6 -left-6 text-6xl text-brand-purple opacity-50">&quot;</div>
-                <p className="text-xl md:text-2xl text-gray-200 font-medium leading-relaxed mb-8">
-                    We founded Infonaut because the future isn&apos;t about AI chat wrappers. 
-                    It&apos;s about autonomous agents that perform actual work. 
-                    We are building the workforce of tomorrow.
-                </p>
-                <div className="flex items-center gap-4">
-                    <div className="h-12 w-12 rounded-full overflow-hidden border border-white/20 bg-gray-800">
-                         {/* UNCOMMENT THIS when you upload your photo as founder.jpg */}
-                         {/* <img src={ASSETS.team.founder} alt="Founder" className="object-cover w-full h-full" /> */}
-                    </div>
-                    <div>
-                        <div className="text-white font-bold">Your Name</div>
-                        <div className="text-brand-purple text-sm">CEO, Infonaut LTD</div>
-                    </div>
-                </div>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 tracking-tight leading-tight">
+                "We don't just build software. We build the <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple to-brand-blue">autonomous workforce</span> of tomorrow."
+            </h2>
+            <div className="text-[#8A8F98] font-medium">
+                Founder Name — CEO, Infonaut LTD
             </div>
         </div>
       </section>
 
-      {/* 7. CTA & FOOTER */}
-      <section className="py-24 px-6 text-center border-t border-white/10">
-        <div className="max-w-2xl mx-auto">
-             <h2 className="text-4xl font-bold text-white mb-6">Ready to automate?</h2>
-             <div className="flex justify-center gap-4">
-                <Button variant="glow" size="lg">Contact Us</Button>
+      {/* --- SECTION 10: FAQ --- */}
+      <div className="border-t border-white/5">
+        <FAQ />
+      </div>
+
+      {/* --- SECTION 11: BIG CTA (Linear Style) --- */}
+      <section className="py-40 px-6 text-center border-t border-white/10 bg-[url('https://linear.app/_next/static/media/hero-background.6e3c0c9e.jpg')] bg-cover bg-center relative">
+        <div className="absolute inset-0 bg-black/80" /> {/* Overlay to darken background */}
+        <div className="max-w-3xl mx-auto relative z-10">
+             <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter">Ready to automate?</h2>
+             <p className="text-xl text-[#8A8F98] mb-12">Join the waiting list for our next cohort of partners. We are onboarding 5 companies per week.</p>
+             <div className="flex flex-col sm:flex-row justify-center gap-4">
+                <Button variant="glow" size="lg" className="h-14 px-10 text-lg">Get Early Access</Button>
+                <Button variant="outline" size="lg" className="h-14 px-10 text-lg hover:bg-white/10">Contact Sales</Button>
              </div>
         </div>
       </section>
 
-      <footer className="py-12 bg-black border-t border-white/10 text-center md:text-left">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-col gap-2">
-            <span className="text-lg font-bold text-white tracking-tighter">INFONAUT.</span>
-            <p className="text-xs text-gray-500">&copy; {new Date().getFullYear()} Infonaut LTD.</p>
-          </div>
-          <div className="flex gap-8 text-sm text-gray-500 font-medium">
-             <Button variant="ghost" size="sm">Twitter</Button>
-             <Button variant="ghost" size="sm">LinkedIn</Button>
-          </div>
+      {/* --- MEGA FOOTER (Linear Style) --- */}
+      <footer className="py-20 bg-black border-t border-white/10 text-sm text-[#8A8F98]">
+        <div className="max-w-[1400px] mx-auto px-6 grid grid-cols-2 md:grid-cols-6 gap-12">
+            
+            {/* Brand Column */}
+            <div className="col-span-2">
+                <span className="text-lg font-bold text-white tracking-tighter block mb-4">INFONAUT.</span>
+                <p className="mb-6 max-w-xs">Infonaut is a UK-based AI Venture Studio building the automated economy.</p>
+                <div className="flex gap-4">
+                    <Twitter className="h-5 w-5 hover:text-white cursor-pointer transition-colors" />
+                    <Github className="h-5 w-5 hover:text-white cursor-pointer transition-colors" />
+                    <Linkedin className="h-5 w-5 hover:text-white cursor-pointer transition-colors" />
+                </div>
+            </div>
+
+            {/* Links Columns */}
+            <div>
+                <h4 className="font-bold text-white mb-6">Product</h4>
+                <ul className="space-y-4">
+                    <li><Link href="#grox" className="hover:text-white transition-colors">GroX</Link></li>
+                    <li><Link href="#xgent" className="hover:text-white transition-colors">Xgent</Link></li>
+                    <li><Link href="#a11ygent" className="hover:text-white transition-colors">a11ygent</Link></li>
+                    <li><Link href="#superflash" className="hover:text-white transition-colors">superflash.dev</Link></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 className="font-bold text-white mb-6">Services</h4>
+                <ul className="space-y-4">
+                    <li><Link href="https://leancraft.org" className="hover:text-white transition-colors">Leancraft</Link></li>
+                    <li><Link href="#farewills" className="hover:text-white transition-colors">Farewills</Link></li>
+                    <li><Link href="#letsrewise" className="hover:text-white transition-colors">LetsRewise</Link></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 className="font-bold text-white mb-6">Company</h4>
+                <ul className="space-y-4">
+                    <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+                    <li><Link href="/careers" className="hover:text-white transition-colors">Careers</Link></li>
+                    <li><Link href="/manifesto" className="hover:text-white transition-colors">Manifesto</Link></li>
+                    <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 className="font-bold text-white mb-6">Legal</h4>
+                <ul className="space-y-4">
+                    <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link></li>
+                    <li><Link href="/terms" className="hover:text-white transition-colors">Terms</Link></li>
+                    <li><Link href="/security" className="hover:text-white transition-colors">Security</Link></li>
+                </ul>
+            </div>
+
+        </div>
+        
+        <div className="max-w-[1400px] mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; {new Date().getFullYear()} Infonaut LTD. All rights reserved.</p>
+            <p>Designed in London. Deployed globally.</p>
         </div>
       </footer>
     </main>

@@ -9,43 +9,48 @@ const config: Config = {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Inter", "sans-serif"], // Mandatory for Linear look
+      },
       colors: {
-        background: "#050505",
+        background: "#000000", // Pure black
         foreground: "#ffffff",
+        // Linear's specific gray scale
+        glass: "rgba(255, 255, 255, 0.08)",
+        "glass-hover": "rgba(255, 255, 255, 0.12)",
+        border: "rgba(255, 255, 255, 0.1)",
+        "text-secondary": "#8A8F98", // The Linear gray text color
         brand: {
-          purple: "#A855F7",
+          purple: "#5E6AD2", // Linear's Blurple
           blue: "#3B82F6",
           pink: "#EC4899",
         }
       },
       animation: {
-        "pulse-slow": "pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "scroll": "scroll linear infinite",
-        "fade-in-up": "fadeInUp 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards",
-      },
-      transitionDelay: {
-        "100": "100ms",
-        "200": "200ms",
-        "300": "300ms",
+        "fade-in": "fade-in 1s ease-out forwards",
+        "fade-in-up": "fade-in-up 1s ease-out forwards",
+        "glow": "glow 4s ease-in-out infinite alternate",
+        "scroll": "scroll 40s linear infinite",
       },
       keyframes: {
-        scroll: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
+        "fade-in": {
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
-        fadeInUp: {
-          "0%": {
-            opacity: "0",
-            transform: "translate3d(0, 40px, 0)",
-          },
-          "100%": {
-            opacity: "1",
-            transform: "translate3d(0, 0, 0)",
-          },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        glow: {
+          "0%": { opacity: "0.5", transform: "scale(1)" },
+          "100%": { opacity: "1", transform: "scale(1.1)" },
+        },
+        scroll: {
+          to: { transform: "translate(calc(-50% - 0.5rem))" },
         },
       },
       backgroundImage: {
-         "grid-pattern": "linear-gradient(to right, #1f1f1f 1px, transparent 1px), linear-gradient(to bottom, #1f1f1f 1px, transparent 1px)",
+         "glow-conic": "conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)",
       }
     },
   },
