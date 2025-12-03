@@ -8,7 +8,7 @@ import { Button } from "@/components/atoms/button";
 import { LogoCloud } from "@/components/organisms/logocloud";
 import { FeatureSection } from "@/components/organisms/featuresection";
 import { FAQ } from "@/components/organisms/faq";
-import { AdvancedForm } from "@/components/molecules/advancedform";
+
 import { TechIcon } from "@/components/atoms/techicons";
 import { Shortcut } from "@/components/atoms/shortcut";
 import { ASSETS } from "@/lib/assets";
@@ -462,19 +462,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* --- CONTACT FORM SECTION --- */}
-      <section className="py-24 md:py-40 px-4 md:px-6 border-t border-white/5 scroll-fade-in">
-        <div className="max-w-2xl mx-auto">
-          <div className="text-center mb-12 md:mb-16">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 md:mb-6 tracking-tighter">Partner With Infonaut</h2>
-            <p className="text-base md:text-lg text-[#8A8F98] leading-relaxed">Interested in investing, building with us, or joining as a founder? Let's talk about building the next generation of autonomous companies.</p>
-          </div>
-          
-          <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-8 md:p-12 backdrop-blur-xl hover:bg-white/[0.05] hover:border-brand-purple/30 smooth-transition">
-            <AdvancedForm />
-          </div>
-        </div>
-      </section>
 
       {/* --- FINAL CTA BEFORE FOOTER --- */}
       <section className="py-24 md:py-40 px-4 md:px-6 text-center border-t border-white/10 relative overflow-hidden scroll-fade-in">
@@ -489,6 +476,24 @@ export default function Home() {
                 <Button variant="glow" size="lg" className="h-12 md:h-14 px-6 md:px-10 text-sm md:text-lg font-bold shadow-[0_0_60px_rgba(94,106,210,0.6)] w-full sm:w-auto">Apply as Founder</Button>
                 <Button variant="outline-hover" size="lg" className="h-12 md:h-14 px-6 md:px-10 text-sm md:text-lg font-semibold w-full sm:w-auto">Invest in Infonaut</Button>
              </div>
+        </div>
+      </section>
+
+      {/* --- CONTACT FORM SECTION --- */}
+      <section className="py-24 md:py-40 px-4 md:px-6 border-t border-white/5 scroll-fade-in">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-12 md:mb-16">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white mb-4 md:mb-6 tracking-tighter">Launch Your Successful Startup</h2>
+            <p className="text-base md:text-lg text-[#8A8F98] leading-relaxed">Ready to build something extraordinary? Whether you're a founder, investor, or partner, let's create the next autonomous company together.</p>
+          </div>
+          
+          <div className="flex justify-center">
+            <Link href="https://tally.so/r/rjD4o5" target="_blank" rel="noopener noreferrer">
+              <Button variant="glow" size="lg" className="h-12 md:h-14 px-8 md:px-12 text-base md:text-lg font-bold shadow-[0_0_60px_rgba(94,106,210,0.6)]">
+                Get in Touch
+              </Button>
+            </Link>
+          </div>
         </div>
       </section>
 
