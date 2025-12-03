@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Button } from "@/components/atoms/Button";
+import { Button } from "@/components/atoms/button"; // Lowercase 'button'
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 

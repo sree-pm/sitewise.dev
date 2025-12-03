@@ -10,6 +10,7 @@ interface BentoCardProps {
   href: string;
   cta: string;
   gradient?: string;
+  children?: React.ReactNode;
 }
 
 export const BentoCard = ({
@@ -20,13 +21,17 @@ export const BentoCard = ({
   href,
   cta,
   gradient = "gray",
+  children,
 }: BentoCardProps) => {
   
-  const gradientMap: Record<string, string> = {
+ const gradientMap: Record<string, string> = {
     purple: "from-brand-purple/20 via-transparent to-transparent",
     blue: "from-brand-blue/20 via-transparent to-transparent",
     pink: "from-brand-pink/20 via-transparent to-transparent",
     gray: "from-white/10 via-transparent to-transparent",
+    // NEW COLORS ADDED BELOW:
+    green: "from-green-500/20 via-transparent to-transparent",
+    teal: "from-teal-500/20 via-transparent to-transparent", 
   };
 
   return (
@@ -46,6 +51,8 @@ export const BentoCard = ({
             <h3 className="mb-2 text-xl font-bold text-white tracking-tight">{title}</h3>
             <p className="text-sm leading-relaxed text-gray-400">{description}</p>
         </div>
+        
+        {children}
         
         <Link 
             href={href} 

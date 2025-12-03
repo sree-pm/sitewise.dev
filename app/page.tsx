@@ -1,15 +1,13 @@
 "use client";
 
-import { Navbar } from "@/components/organisms/Navbar";
-import { BentoCard } from "@/components/molecules/BentoCard";
-import { Button } from "@/components/atoms/Button";
-import { LogoCloud } from "@/components/organisms/LogoCloud";
-// REMOVED: import { Pricing } from "@/components/organisms/Pricing"; <--- Deleted this line
-import { FAQ } from "@/components/organisms/FAQ";
-import { TechIcon } from "@/components/atoms/TechIcons";
+import { Navbar } from "@/components/organisms/navbar";
+import { BentoCard } from "@/components/molecules/bentocard";
+import { Button } from "@/components/atoms/button";
+import { LogoCloud } from "@/components/organisms/logocloud";
+import { FAQ } from "@/components/organisms/faq";
+import { TechIcon } from "@/components/atoms/techicons";
 import { ASSETS } from "@/lib/assets";
-import { Zap, Bot, Globe, Cpu, ChevronRight, Star, ArrowUpRight } from "lucide-react";
-import Image from "next/image";
+import { Zap, Bot, Globe, Cpu, ChevronRight, Star } from "lucide-react";
 
 export default function Home() {
   return (
@@ -18,26 +16,21 @@ export default function Home() {
 
       {/* 1. HERO SECTION */}
       <section className="relative pt-48 pb-32 px-6 flex flex-col items-center text-center max-w-5xl mx-auto overflow-hidden">
-        
-        {/* Badge */}
         <div className="mb-8 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300 backdrop-blur-xl animate-fade-in-up hover:bg-white/10 transition-colors cursor-default">
           <span className="flex h-2 w-2 rounded-full bg-brand-purple mr-2 animate-pulse-slow"></span>
           Infonaut R&D: Public Preview
         </div>
 
-        {/* Headline */}
         <h1 className="text-5xl md:text-8xl font-bold tracking-tighter text-white mb-8 leading-[1.1] animate-fade-in-up delay-100">
           We build <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-purple via-brand-pink to-brand-blue">Intelligence</span> <br />
           for the automated economy.
         </h1>
 
-        {/* Subtitle */}
         <p className="text-lg md:text-xl text-gray-400 max-w-2xl mb-12 leading-relaxed animate-fade-in-up delay-200">
           Infonaut is a UK-based AI Venture Studio. We engineer autonomous agents, 
           growth systems, and enterprise infrastructure.
         </p>
 
-        {/* CTA */}
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto animate-fade-in-up delay-300">
           <Button size="lg" variant="glow" className="w-full sm:w-auto">
             Explore Ventures
@@ -47,7 +40,6 @@ export default function Home() {
           </Button>
         </div>
 
-        {/* Hero Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-brand-purple/20 blur-[120px] rounded-full pointer-events-none -z-10" />
       </section>
 
@@ -74,8 +66,8 @@ export default function Home() {
               gradient="purple"
             >
                <div className="absolute inset-0 top-32 px-4 pointer-events-none">
-                  {/* <img src={ASSETS.ventures.grox} alt="GroX Dashboard" className="rounded-t-xl border border-white/10 shadow-2xl opacity-80" /> */}
-                  <div className="w-full h-full bg-white/5 border border-white/10 rounded-t-xl" />
+                  {/* UNCOMMENTED: Image is now active */}
+                  <img src={ASSETS.ventures.grox} alt="GroX Dashboard" className="rounded-t-xl border border-white/10 shadow-2xl opacity-90 object-cover w-full h-full" />
                </div>
             </BentoCard>
             
@@ -90,22 +82,37 @@ export default function Home() {
               gradient="blue"
             >
                <div className="absolute right-0 bottom-0 w-3/4 h-3/4 pointer-events-none translate-x-12 translate-y-12">
-                  <div className="w-full h-full bg-gradient-to-br from-brand-blue/20 to-black border-l border-t border-white/10 rounded-tl-2xl" />
+                  <img src={ASSETS.ventures.xgent} alt="Xgent Workflow" className="rounded-tl-2xl border border-white/10 shadow-2xl object-cover w-full h-full" />
                </div>
             </BentoCard>
             
-            {/* Leancraft */}
+            {/* a11ygent */}
             <BentoCard
-              className="md:col-span-2"
-              title="Leancraft.org"
-              description="AI Consulting for the SMB. Strategy, implementation, and training."
-              href="https://leancraft.org"
-              cta="Book Consultation"
-              icon={Globe}
-              gradient="pink"
+              className="md:col-span-1"
+              title="a11ygent"
+              description="Autonomous Accessibility Fixer. Turns github repos compliant automatically."
+              href="#a11ygent"
+              cta="View Demo"
+              icon={Cpu}
+              gradient="green"
             >
-               <div className="absolute right-4 top-4 opacity-50">
-                  <TechIcon name="OpenAI" className="h-12 w-12 text-white/20" />
+               <div className="absolute inset-0 top-32 px-4 pointer-events-none">
+                  <img src={ASSETS.ventures.a11ygent} alt="a11ygent" className="rounded-t-xl border border-white/10 opacity-90 object-cover w-full h-full" />
+               </div>
+            </BentoCard>
+
+            {/* Farewills */}
+            <BentoCard
+              className="md:col-span-1"
+              title="Farewills"
+              description="AI Estate Planning. Solicitor-grade wills and probate management."
+              href="#farewills"
+              cta="Learn More"
+              icon={Globe}
+              gradient="gray"
+            >
+               <div className="absolute inset-0 top-32 px-4 pointer-events-none">
+                  <img src={ASSETS.ventures.farewills} alt="Farewills" className="rounded-t-xl border border-white/10 opacity-90 object-cover w-full h-full" />
                </div>
             </BentoCard>
             
@@ -113,18 +120,29 @@ export default function Home() {
             <BentoCard
               className="md:col-span-1"
               title="superflash.dev"
-              description="Dev tools for velocity. Build AI-native apps in minutes."
+              description="Flashpoint Architecture. Multistep AI website generation."
               href="#superflash"
               cta="Start Building"
               icon={Cpu}
               gradient="gray"
             >
                  <div className="absolute inset-0 top-32 px-4 pointer-events-none">
-                   <div className="w-full h-full bg-white/5 border border-white/10 rounded-t-xl p-4 font-mono text-xs text-gray-400">
-                     <p>$ npx create-superflash-app</p>
-                     <p className="text-brand-pink"> &gt; Initializing AI core...</p>
-                     <p>&gt; Done in 0.4s.</p>
-                   </div>
+                   <img src={ASSETS.ventures.superflash} alt="Superflash" className="rounded-t-xl border border-white/10 opacity-90 object-cover w-full h-full" />
+               </div>
+            </BentoCard>
+
+            {/* LetsRewise */}
+            <BentoCard
+              className="md:col-span-2"
+              title="LetsRewise"
+              description="Gamified Intelligence. Master any exam (SQE, ACCA) with AI-generated skill trees."
+              href="#letsrewise"
+              cta="Start Learning"
+              icon={Star}
+              gradient="teal"
+            >
+               <div className="absolute inset-0 top-32 px-4 pointer-events-none">
+                  <img src={ASSETS.ventures.letsrewise} alt="LetsRewise Dashboard" className="rounded-t-xl border border-white/10 opacity-90 shadow-2xl object-cover w-full h-full" />
                </div>
             </BentoCard>
         </div>
@@ -156,7 +174,7 @@ export default function Home() {
          </div>
       </section>
 
-      {/* 5. FAQ (REMOVED PRICING, KEPT FAQ) */}
+      {/* 5. FAQ */}
       <FAQ />
 
       {/* 6. FOUNDER STATEMENT */}
@@ -171,10 +189,11 @@ export default function Home() {
                 </p>
                 <div className="flex items-center gap-4">
                     <div className="h-12 w-12 rounded-full overflow-hidden border border-white/20 bg-gray-800">
+                         {/* UNCOMMENT THIS when you upload your photo as founder.jpg */}
                          {/* <img src={ASSETS.team.founder} alt="Founder" className="object-cover w-full h-full" /> */}
                     </div>
                     <div>
-                        <div className="text-white font-bold">Founder Name</div>
+                        <div className="text-white font-bold">Your Name</div>
                         <div className="text-brand-purple text-sm">CEO, Infonaut LTD</div>
                     </div>
                 </div>

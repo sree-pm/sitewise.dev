@@ -1,4 +1,4 @@
-import { AccordionItem } from "@/components/molecules/AccordionItem";
+import { AccordionItem } from "@/components/molecules/accordionitem"; // Lowercase
 
 export function FAQ() {
   return (

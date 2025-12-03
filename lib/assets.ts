@@ -6,12 +6,15 @@ export const ASSETS = {
     favicon: "/assets/brand/favicon.ico",
   },
   ventures: {
-    // Screen size: 1200 x 800 pixels (High Quality)
     grox: "/assets/ventures/grox-dashboard.png",
     xgent: "/assets/ventures/xgent-workflow.png",
     leancraft: "/assets/ventures/leancraft-hero.png",
     superflash: "/assets/ventures/superflash-code.png",
-  },
+    // ADD THESE NEW ONES:
+    a11ygent: "/assets/ventures/a11ygent-code.png",
+    letsrewise: "/assets/ventures/letsrewise-dashboard.png",
+    farewills: "/assets/ventures/farewills-dashboard.png",
+},
   team: {
     // Size: 400 x 400 pixels (Square)
     founder: "/assets/team/founder.jpg",

@@ -9,7 +9,7 @@ export const Marquee = ({
 }) => {
   return (
     <div className="relative flex w-full overflow-hidden border-y border-white/5 bg-black/20 py-10">
-      <div className={cn("flex min-w-full shrink-0 animate-scroll gap-12 px-12", speed === "fast" ? "duration-[20s]" : "duration-[40s]")}>
+      <div className={cn("flex animate-scroll gap-12 px-12", speed === "fast" ? "[animation-duration:20s]" : "[animation-duration:40s]")}>
         {items.map((item, idx) => (
           <div key={idx} className="flex items-center justify-center opacity-50 hover:opacity-100 transition-opacity">
             {item}
