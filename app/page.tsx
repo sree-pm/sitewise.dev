@@ -7,7 +7,7 @@ import { LogoCloud } from "@/components/organisms/logocloud";
 import { FeatureSection } from "@/components/organisms/featuresection";
 import { FAQ } from "@/components/organisms/faq";
 import { TechIcon } from "@/components/atoms/techicons";
-import { Shortcut } from "@/components/atoms/Shortcut";
+import { Shortcut } from "@/components/atoms/shortcut";
 import { ASSETS } from "@/lib/assets";
 import { Zap, Bot, Globe, Cpu, ChevronRight, Star, Command, GitPullRequest, Workflow, ShieldCheck, Twitter, Linkedin, Github, BarChart3, Layers, ArrowRight } from "lucide-react";
 import Link from "next/link";
