@@ -1,0 +1,40 @@
+name: Rebuild on Page Change
+
+on:
+  push:
+    paths:
+      - 'data/pages.json'
+    branches:
+      - main
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    name: Rebuild Cloudflare Pages
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build site
+        run: npm run build
+        env:
+          # Pass any required environment variables
+          CI: true
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: infonaut-ltd
+          directory: .next/static
+          productionBranch: main

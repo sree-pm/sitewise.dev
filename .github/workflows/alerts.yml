@@ -1,0 +1,18 @@
+name: CI Alerts
+
+on:
+  workflow_run:
+    workflows: ["deploy-storybook", "preview-storybook", "lint-typecheck"]
+    types:
+      - completed
+
+jobs:
+  notify:
+    if: ${{ github.event.workflow_run.conclusion != 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Slack alert
+        if: ${{ secrets.SLACK_WEBHOOK_URL != '' }}
+        run: |
+          payload=$(jq -n --arg wname "${{ github.event.workflow_run.name }}" --arg url "${{ github.event.workflow_run.html_url }}" '{text: ("Workflow failed: " + $wname + " → " + $url)}')
+          curl -X POST -H 'Content-type: application/json' --data "$payload" "${{ secrets.SLACK_WEBHOOK_URL }}"

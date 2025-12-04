@@ -10,7 +10,7 @@ export const BentoGrid = ({
   return (
     <div
       className={cn(
-        "grid w-full auto-rows-[18rem] md:auto-rows-[22rem] grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4 scroll-fade-in",
+        "grid w-full auto-rows-[16rem] sm:auto-rows-[18rem] md:auto-rows-[20rem] lg:auto-rows-[22rem] grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 scroll-fade-in",
         className
       )}
     >
@@ -40,7 +40,7 @@ export const BentoCard = ({
 }: BentoCardProps) => (
   <div
     className={cn(
-      "scroll-reveal group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-black p-6 smooth-transition duration-500 hover:border-brand-purple/40 hover:bg-white/[0.03] hover:shadow-[0_0_40px_rgba(94,106,210,0.2)] hover-lift card-tilt",
+      "scroll-reveal group relative col-span-1 flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-glass-light/30 p-5 sm:p-6 md:p-6 smooth-transition duration-500 hover:border-brand-purple/40 hover:bg-white/[0.03] hover:shadow-[0_10px_50px_rgba(94,106,210,0.12)] hover-lift card-tilt",
       className
     )}
   >
@@ -55,12 +55,12 @@ export const BentoCard = ({
     </div>
 
     {/* Shadow depth effect */}
-    <div className="absolute inset-0 rounded-2xl shadow-depth-sm group-hover:shadow-depth-lg smooth-transition -z-10" />
+    <div className="absolute inset-0 rounded-2xl shadow-depth-sm group-hover:shadow-depth-lg smooth-transition -z-10 pointer-events-none" />
 
     <div className="relative z-10 flex flex-col justify-between h-full">
       <div className="flex items-start justify-between gap-4">
         <div className="flex flex-col gap-3 flex-1">
-          <div className="p-3 bg-brand-purple/10 rounded-xl w-fit group-hover:bg-brand-purple/20 smooth-transition group-hover:scale-110 group-hover:icon-pulse">
+          <div className="p-3 bg-gradient-to-br from-white/4 to-transparent rounded-xl w-fit group-hover:bg-brand-purple/20 smooth-transition group-hover:scale-110 group-hover:icon-pulse">
             <Icon className="h-6 w-6 text-brand-purple group-hover:text-white smooth-transition" />
           </div>
           <h3 className="text-xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-brand-purple group-hover:to-brand-blue smooth-transition">{name}</h3>

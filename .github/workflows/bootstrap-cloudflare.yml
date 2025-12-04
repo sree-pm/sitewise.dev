@@ -1,0 +1,66 @@
+name: Bootstrap Cloudflare Pages Project
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate required secrets
+        run: |
+          required=(CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID CLOUDFLARE_PAGES_PROJECT TURNSTILE_SECRET)
+          for k in "${required[@]}"; do
+            if [ -z "${!k}" ]; then
+              echo "Missing secret: $k"; exit 1; fi; done
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_PAGES_PROJECT: ${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
+          TURNSTILE_SECRET: ${{ secrets.TURNSTILE_SECRET }}
+
+      - name: Create KV namespaces (RATE_LIMIT_KV, CONTACT_KV)
+        run: |
+          set -e
+          API="https://api.cloudflare.com/client/v4"
+          headers=(-H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json")
+          create_kv(){
+            name="$1"; echo "Creating KV namespace $name";
+            curl -s -X POST "$API/accounts/$CLOUDFLARE_ACCOUNT_ID/storage/kv/namespaces" "${headers[@]}" \
+              --data "{\"title\": \"$name\"}" | jq -e '.success' >/dev/null || echo "KV create call returned non-success (may already exist)";
+            # fetch id
+            id=$(curl -s "$API/accounts/$CLOUDFLARE_ACCOUNT_ID/storage/kv/namespaces" "${headers[@]}" | jq -r ".result[] | select(.title==\"$name\").id")
+            echo "$name_ID=$id" >> kv_ids.env
+          }
+          create_kv RATE_LIMIT_KV
+          create_kv CONTACT_KV
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+
+      - name: Bind KV and env to Pages project
+        run: |
+          set -e
+          API="https://api.cloudflare.com/client/v4"
+          headers=(-H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" -H "Content-Type: application/json")
+          source kv_ids.env
+          # Update Pages Functions KV bindings and env vars
+          # Note: Pages deployments read these; this call sets project-level vars.
+          payload=$(cat <<JSON
+          {
+            "env_vars": {
+              "TURNSTILE_SECRET": {"value": "$TURNSTILE_SECRET"}
+            },
+            "kv_namespaces": [
+              {"binding": "RATE_LIMIT_KV", "namespace_id": "$RATE_LIMIT_KV_ID"},
+              {"binding": "CONTACT_KV", "namespace_id": "$CONTACT_KV_ID"}
+            ]
+          }
+JSON
+          )
+          curl -s -X PATCH "$API/accounts/$CLOUDFLARE_ACCOUNT_ID/pages/projects/$CLOUDFLARE_PAGES_PROJECT" "${headers[@]}" --data "$payload" | jq -e '.success' >/dev/null
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_PAGES_PROJECT: ${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
+          TURNSTILE_SECRET: ${{ secrets.TURNSTILE_SECRET }}

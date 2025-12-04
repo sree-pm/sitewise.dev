@@ -1,21 +1,28 @@
 {
-  "name": "infonaut-ltd",
-  "version": "0.1.0",
+  "name": "sitewise-dev",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "pages:build": "npx @cloudflare/next-on-pages"
+    "pages:build": "npx @cloudflare/next-on-pages",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@octokit/rest": "latest",
+    "@puckjs/core": "latest",
+    "@puckjs/plugin-heading-analyzer": "latest",
+    "@puckjs/plugin-iframe": "latest",
     "@radix-ui/react-slot": "latest",
     "class-variance-authority": "latest",
     "clsx": "latest",
     "framer-motion": "latest",
     "lucide-react": "latest",
     "next": "^15.0.3",
+    "next-auth": "^4.24.5",
     "react": "^18",
     "react-dom": "^18",
     "tailwind-merge": "latest"
@@ -27,7 +34,7 @@
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest",
+    "eslint-config-next": "16.0.7",
     "postcss": "latest",
     "tailwindcss": "3.4.1",
     "typescript": "latest"

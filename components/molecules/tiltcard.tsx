@@ -5,14 +5,21 @@ import { useRef, useState } from 'react';
 interface TiltCardProps {
   children: React.ReactNode;
   className?: string;
+  glowColor?: 'purple' | 'blue' | 'pink';
 }
 
-export function TiltCard({ children, className = '' }: TiltCardProps) {
+export function TiltCard({ children, className = '', glowColor = 'purple' }: TiltCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tiltStyle, setTiltStyle] = useState({
     rotateX: 0,
     rotateY: 0,
   });
+
+  const glowMap = {
+    purple: 'shadow-[0_20px_60px_rgba(94,106,210,0.3)]',
+    blue: 'shadow-[0_20px_60px_rgba(59,130,246,0.3)]',
+    pink: 'shadow-[0_20px_60px_rgba(236,72,153,0.3)]',
+  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
@@ -42,9 +49,9 @@ export function TiltCard({ children, className = '' }: TiltCardProps) {
       style={{
         transformStyle: 'preserve-3d',
         transform: `perspective(1000px) rotateX(${tiltStyle.rotateX}deg) rotateY(${tiltStyle.rotateY}deg)`,
-        transition: 'transform 0.1s ease-out',
+        transition: 'transform 0.15s ease-out, box-shadow 0.3s ease-out',
       }}
-      className={`${className} card-tilt hover-lift`}
+      className={`${className} ${glowMap[glowColor]} card-tilt hover-lift transition-shadow duration-300`}
     >
       {children}
     </div>

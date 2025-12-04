@@ -1,0 +1,48 @@
+name: Preview Storybook on PRs
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy-preview:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook static
+        run: npm run build-storybook
+
+      - name: Publish preview to Cloudflare Pages
+        id: pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: ${{ secrets.CLOUDFLARE_PAGES_PROJECT }}
+          directory: 'storybook-static'
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # Set to true to mark as preview
+          branch: ${{ github.head_ref }}
+
+      - name: Comment preview URL on PR
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Storybook preview deployed to Cloudflare Pages.
+            Project: `${{ secrets.CLOUDFLARE_PAGES_PROJECT }}`
+            Branch: `${{ github.head_ref }}`
+            Visit the Pages dashboard to retrieve the preview URL.

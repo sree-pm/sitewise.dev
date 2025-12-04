@@ -1,0 +1,100 @@
+{
+  "home": {
+    "title": "Home",
+    "blocks": [
+      {
+        "type": "Hero",
+        "props": {
+          "headline": "Dynamic Hero — Rendered from pages.json",
+          "subheading": "This homepage is built from JSON-driven blocks.",
+          "badge": "Dynamic",
+          "primaryCta": "Apply as Founder",
+          "secondaryCta": "Explore Portfolio",
+          "ctaUrl1": "#",
+          "ctaUrl2": "#",
+          "align": "center",
+          "backgroundImage": "",
+          "minHeight": "520px"
+        }
+      },
+      {
+        "type": "FeatureFour",
+        "props": {
+          "title": "Why builders choose us",
+          "features": [
+            { "icon": "⚡", "title": "Velocity", "description": "Ship faster with autonomous agents." },
+            { "icon": "🔒", "title": "Secure", "description": "Enterprise-grade security by default." },
+            { "icon": "♾️", "title": "Scale", "description": "Products that grow with you." },
+            { "icon": "🎯", "title": "Focus", "description": "Let agents handle repetitive work." }
+          ]
+        }
+      },
+      {
+        "type": "CTA",
+        "props": {
+          "headline": "Ready to Get Started?",
+          "description": "Apply now and join our next cohort.",
+          "primaryBtn": "Apply",
+          "secondaryBtn": "Learn More",
+          "primaryUrl": "#",
+          "secondaryUrl": "#",
+          "alignment": "center"
+        }
+      }
+    ]
+  },
+  "about": {
+    "title": "About",
+    "blocks": [
+      {
+        "type": "Section",
+        "props": {
+          "title": "About Infonaut",
+          "subtitle": "We build autonomous companies using AI and product-first engineering.",
+          "padding": "2"
+        }
+      },
+      {
+        "type": "TwoColumn",
+        "props": {
+          "title": "Our Mission",
+          "leftTitle": "Design",
+          "leftContent": "We design systems that scale.",
+          "rightTitle": "Deliver",
+          "rightContent": "We deliver products that make teams autonomous.",
+          "imageRight": "https://images.unsplash.com/photo-1525182008055-f88b95ff7980?w=800"
+        }
+      }
+    ]
+  },
+  "product": {
+    "title": "Product",
+    "blocks": [
+      {
+        "type": "Section",
+        "props": { "title": "Product Overview", "subtitle": "Key capabilities and highlights." }
+      },
+      {
+        "type": "GridSection",
+        "props": {
+          "title": "Core Features",
+          "columns": "3",
+          "items": [
+            { "icon": "⚡", "title": "Realtime", "description": "Low latency agent orchestration." },
+            { "icon": "🔐", "title": "Secure", "description": "Per-tenant isolation and encryption." },
+            { "icon": "🧠", "title": "Smart", "description": "AI-driven decision making." }
+          ]
+        }
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "blocks": [
+      {
+        "type": "ContactForm",
+        "props": { "title": "Get In Touch", "description": "Tell us about your project.", "buttonText": "Send" }
+      }
+    ]
+  }
+}

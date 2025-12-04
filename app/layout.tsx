@@ -6,8 +6,8 @@ import { cn } from "@/lib/utils";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Infonaut | Intelligence Engineered",
-  description: "UK-based AI Venture Studio building the automated economy.",
+  title: "sitewise.dev | Production-Ready Next.js Template",
+  description: "Free, open-source Next.js 15 template with TypeScript, Tailwind CSS, and 17+ components. Build beautiful websites in minutes.",
 };
 
 export default function RootLayout({

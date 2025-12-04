@@ -2,18 +2,24 @@ import { AccordionItem } from "@/components/molecules/accordionitem"; // Lowerca
 
 export function FAQ() {
   return (
-    <section className="py-32 px-6 max-w-4xl mx-auto scroll-fade-in">
-      <div className="mb-20">
-        <h2 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">Frequently asked</h2>
-        <p className="text-lg text-[#8A8F98] font-medium">Everything you need to know about Infonaut and our products.</p>
+    <section className="py-24 px-4 md:px-6 max-w-4xl mx-auto scroll-fade-in">
+      <div className="mb-10 text-center">
+        <h2 className="text-4xl md:text-5xl font-black text-white mb-3 tracking-tight leading-tight">Frequently asked</h2>
+        <p className="text-lg text-text-tertiary font-medium">Everything you need to know about sitewise.dev and our template.</p>
       </div>
-      <div className="space-y-3">
-        <AccordionItem title="What is Infonaut?" content="Infonaut is a Venture Studio. We don't just build software; we build entire AI companies (like GroX and Xgent) that function as products. Each venture is independently funded, managed, and deployed." />
-        <AccordionItem title="How does Xgent work?" content="Xgent uses autonomous agentic workflows. Unlike a chatbot, Xgent can perform actions: send emails, query databases, update CRMs, manage projects—all without human intervention. It's your 24/7 employee." />
-        <AccordionItem title="Can I hire Leancraft for my small business?" content="Absolutely. Leancraft is our consulting arm designed to help SMBs implement elite management systems. We analyze your bottlenecks and implement proven strategies from Uber, Airbnb, and Stripe." />
-        <AccordionItem title="Is my data secure?" content="Yes. We use enterprise-grade encryption (AES-256), SOC2 compliance, and offer private-cloud deployments. Your data is encrypted at rest and in transit. You can audit our security posture anytime." />
-        <AccordionItem title="How much does it cost?" content="Pricing varies by venture. GroX starts at $299/month. Xgent requires enterprise onboarding. Leancraft pricing is custom. Contact us for a tailored quote based on your needs." />
-        <AccordionItem title="Do you offer API access?" content="Yes. Everything in our dashboard is available via GraphQL API. Build custom integrations, automate workflows, and sync data in real-time across your ecosystem." />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="space-y-3">
+          <AccordionItem title="What is sitewise.dev?" content="sitewise.dev is a free, open-source Next.js template with a complete component library. It's production-ready with TypeScript, Tailwind CSS, atomic design patterns, and deployment configs included. Perfect for landing pages, marketing sites, and SaaS products." />
+          <AccordionItem title="Is it really free?" content="Yes! 100% free forever. No credit card required, no hidden fees, no 'pro' tier. Clone the GitHub repo and it's yours. MIT License means you can use it for personal projects, client work, or commercial products." />
+          <AccordionItem title="Can I use this for my startup?" content="Absolutely! sitewise.dev is designed for production use. Many startups use it for their landing pages, marketing sites, and even internal dashboards. You own the code completely—modify, rebrand, and deploy as you wish." />
+        </div>
+
+        <div className="space-y-3">
+          <AccordionItem title="What's included?" content="17+ production-ready components organized in atomic design (atoms, molecules, organisms), full TypeScript support, Tailwind CSS with custom design tokens, Next.js 15 App Router, deployment configs for Cloudflare/Vercel, and comprehensive documentation." />
+          <AccordionItem title="Do I get updates?" content="Yes! We actively maintain sitewise.dev. Pull the latest changes from GitHub anytime. Watch the repo for notifications on new components, features, and improvements. Updates are free forever." />
+          <AccordionItem title="How do I get support?" content="Community support is available via GitHub Issues and Discussions. For paid priority support, custom development, or consulting, visit our contact page. Most questions are answered quickly by the community." />
+        </div>
       </div>
     </section>
   )
