@@ -3,24 +3,24 @@
 import { useScrollObserver } from "@/lib/useScrollObserver";
 import { useAdvancedScrollObserver } from "@/lib/useAdvancedScroll";
 import usePageData from '@/lib/usePageData';
-import PageRenderer from '@/components/PageRenderer';
-import { Navbar } from "@/components/organisms/navbar";
-import { BentoGrid, BentoCard } from "@/components/molecules/bentogrid";
-import { Button } from "@/components/atoms/button";
-import { Badge } from "@/components/atoms/badge";
-import { LogoCloud } from "@/components/organisms/logocloud";
-import { ValueProp } from "@/components/organisms/valueprop";
-import { FeatureSection } from "@/components/organisms/featuresection";
-import { FAQ } from "@/components/organisms/faq";
-import { PricingTable } from "@/components/organisms/pricing";
-import { ComparisonTable } from "@/components/organisms/comparison";
-import { TiltCard } from "@/components/molecules/tiltcard";
-import { InteractiveHero } from "@/components/molecules/interactivehero";
-import { Marquee } from "@/components/molecules/marquee";
-import { AccordionItem } from "@/components/molecules/accordionitem";
+import PageRenderer from "@/app/editor/components/PageRenderer";
+import { Navbar } from "@/atomic-design-system/organisms/navbar";
+import { BentoGrid, BentoCard } from "@/atomic-design-system/molecules/bentogrid";
+import { Button } from "@/atomic-design-system/atoms/button";
+import { Badge } from "@/atomic-design-system/atoms/badge";
+import { LogoCloud } from "@/atomic-design-system/organisms/logocloud";
+import { ValueProp } from "@/atomic-design-system/organisms/valueprop";
+import { FeatureSection } from "@/atomic-design-system/organisms/featuresection";
+import { FAQ } from "@/atomic-design-system/organisms/faq";
+import { PricingTable } from "@/atomic-design-system/organisms/pricing";
+import { ComparisonTable } from "@/atomic-design-system/organisms/comparison";
+import { TiltCard } from "@/atomic-design-system/molecules/tiltcard";
+import { InteractiveHero } from "@/atomic-design-system/molecules/interactivehero";
+import { Marquee } from "@/atomic-design-system/molecules/marquee";
+import { AccordionItem } from "@/atomic-design-system/molecules/accordionitem";
 
-import { TechIcon } from "@/components/atoms/techicons";
-import { Shortcut } from "@/components/atoms/shortcut";
+import { TechIcon } from "@/atomic-design-system/atoms/techicons";
+import { Shortcut } from "@/atomic-design-system/atoms/shortcut";
 import { ASSETS } from "@/lib/assets";
 import { 
   Zap, Bot, Globe, Cpu, ChevronRight, Star, Command, GitPullRequest, 
@@ -34,7 +34,7 @@ export default function Home() {
   useScrollObserver();
   useAdvancedScrollObserver();
   const { data } = usePageData();
-  const dynamicBlocks = data?.home?.blocks;
+  const dynamicBlocks = data?.content;
   
   if (dynamicBlocks && Array.isArray(dynamicBlocks) && dynamicBlocks.length > 0) {
     return (

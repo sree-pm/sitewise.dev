@@ -9,7 +9,8 @@ function ensureDir(dir: string) {
   if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 }
 
-export async function GET(_: Request, { params }: { params: { slug: string } }) {
+export async function GET(_: Request, context: { params: Promise<{ slug: string }> }) {
+  const params = await context.params;
   const dir = path.join(baseDir, params.slug);
   ensureDir(dir);
   const files = fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
@@ -22,12 +23,13 @@ export async function GET(_: Request, { params }: { params: { slug: string } }) 
   return NextResponse.json({ versions });
 }
 
-export async function POST(req: Request, { params }: { params: { slug: string } }) {
+export async function POST(req: Request, context: { params: Promise<{ slug: string }> }) {
   const admin = await getAdminStatus();
   if (!admin.isAdmin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const body = await req.json().catch(() => null);
   if (!body || !body.blocks) return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
 
+  const params = await context.params;
   ensureDir(baseDir);
   const dir = path.join(baseDir, params.slug);
   ensureDir(dir);
@@ -37,13 +39,14 @@ export async function POST(req: Request, { params }: { params: { slug: string } 
   return NextResponse.json({ ok: true, version: ts });
 }
 
-export async function PUT(req: Request, { params }: { params: { slug: string } }) {
+export async function PUT(req: Request, context: { params: Promise<{ slug: string }> }) {
   const admin = await getAdminStatus();
   if (!admin.isAdmin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const body = await req.json().catch(() => null);
   const versionId = body?.versionId;
   if (!versionId) return NextResponse.json({ error: "Missing versionId" }, { status: 400 });
 
+  const params = await context.params;
   const dir = path.join(baseDir, params.slug);
   const src = path.join(dir, `${versionId}.json`);
   if (!fs.existsSync(src)) return NextResponse.json({ error: "Version not found" }, { status: 404 });

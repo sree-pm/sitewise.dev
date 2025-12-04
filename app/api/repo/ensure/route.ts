@@ -73,7 +73,8 @@ export async function POST(request: NextRequest) {
         });
       } catch (innerErr) {
         // ignore if already exists
-        console.warn("Could not create data/pages.json - it may already exist", innerErr.message || innerErr);
+        const errorMsg = innerErr instanceof Error ? innerErr.message : String(innerErr);
+        console.warn("Could not create data/pages.json - it may already exist", errorMsg);
       }
 
       return NextResponse.json({ exists: false, created: true, owner: login, name: repoName, html_url: repo.html_url });

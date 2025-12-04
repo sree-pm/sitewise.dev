@@ -1,6 +1,6 @@
 import React from 'react';
-import { Header } from '@/components/organisms';
-import { Button } from '@/components/atoms/button';
+import { Header } from '@/atomic-design-system/organisms';
+import { Button } from '@/atomic-design-system/atoms/button';
 
 export default {
   title: 'Organisms/Header',

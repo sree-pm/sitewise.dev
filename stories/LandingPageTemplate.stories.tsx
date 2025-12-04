@@ -1,9 +1,10 @@
 import React from 'react';
-import { LandingPageTemplate } from '@/components/templates';
+import { SaaSLandingTemplate, AgencyPortfolioTemplate, ProductLaunchTemplate } from '@/atomic-design-system/templates';
 
 export default {
-  title: 'Templates/LandingPageTemplate',
-  component: LandingPageTemplate,
+  title: 'Templates/Landing Pages',
 };
 
-export const Example = () => <LandingPageTemplate />;
+export const SaaS = () => <SaaSLandingTemplate />;
+export const Agency = () => <AgencyPortfolioTemplate />;
+export const ProductLaunch = () => <ProductLaunchTemplate />;

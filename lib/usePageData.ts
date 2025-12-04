@@ -2,37 +2,6 @@
 
 import { useEffect, useState } from 'react';
 
-type PageStore = Record<string, any> | null;
-
-export default function usePageData() {
-  const [data, setData] = useState<PageStore>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-  useEffect(() => {
-    let mounted = true;
-    const fetchData = async () => {
-      try {
-        const res = await fetch('/data/pages.json');
-        if (!res.ok) throw new Error(`Failed to fetch pages.json: ${res.status}`);
-        const json = await res.json();
-        if (mounted) setData(json);
-      } catch (err: any) {
-        if (mounted) setError(err);
-      } finally {
-        if (mounted) setLoading(false);
-      }
-    };
-    fetchData();
-    return () => {
-      mounted = false;
-    };
-  }, []);
-
-  return { data, loading, error } as const;
-}
-import { useEffect, useState } from "react";
-
 interface PageData {
   content: any[];
   root: any;
@@ -42,7 +11,7 @@ interface PageData {
  * Hook to load page data from GitHub
  * Falls back to localStorage if GitHub unavailable
  */
-export function usePageData() {
+export default function usePageData() {
   const [data, setData] = useState<PageData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import PuckEditor from "@/components/integrations/puck";
-import { RepoSelector } from "@/components/repo-selector";
+import PuckEditor from "@/app/editor/integrations/puck";
+import { RepoSelector } from "@/app/editor/components/RepoSelector";
 
 export default function EditorPage() {
   const [loading, setLoading] = useState(true);
@@ -35,7 +35,6 @@ export default function EditorPage() {
   }, []);
 
   useEffect(() => {
-    // When user becomes available, show repo selector instead of auto-creating
     if (!user) return;
     setShowRepoSelector(true);
   }, [user]);
@@ -69,141 +68,6 @@ export default function EditorPage() {
       </div>
     );
   }
-"use client";
 
-import React, { useEffect, useState } from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Link from "next/link";
-import HelpModal from "./components/DynamicHelpModal";
-
-export default function EditorHome() {
-  const { data: session, status } = useSession();
-  const [isAdmin, setIsAdmin] = useState<boolean | null>(null);
-  const [versions, setVersions] = useState<Array<{ id: string; timestamp: number }>>([]);
-
-  async function refreshVersions() {
-    const res = await fetch("/api/versions/home");
-    const json = await res.json();
-    setVersions(json.versions || []);
-  }
-
-  useEffect(() => {
-    async function check() {
-      if (!session) return;
-      const res = await fetch("/api/admin-status");
-      const json = await res.json();
-      setIsAdmin(Boolean(json.isAdmin));
-      await refreshVersions();
-    }
-    check();
-  }, [session]);
-
-  if (status === "loading") {
-    return <div>Loading...</div>;
-  }
-
-  if (!session) {
-    return (
-      <div className="max-w-xl">
-        <h1 className="text-2xl font-semibold mb-2">Admin Editor</h1>
-        <p className="text-neutral-400 mb-4">
-          Sign in with GitHub to access the admin editor.
-        </p>
-        <button
-          className="px-4 py-2 rounded bg-white text-black"
-          onClick={() => signIn("github")}
-        >
-          Sign in with GitHub
-        </button>
-      </div>
-    );
-  }
-
-  return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Admin Dashboard</h1>
-        <div className="flex items-center gap-2">
-          <HelpModal />
-          <button
-            className="px-4 py-2 rounded bg-white text-black"
-            onClick={() => signOut()}
-          >
-            Sign out
-          </button>
-        </div>
-      </div>
-
-      <div className="rounded border border-white/10 p-4">
-        <div className="text-sm text-neutral-400">Status</div>
-        <div className="mt-2">
-          <div className="text-white">Signed in as {session.user?.name || session.user?.email}</div>
-          <div className="text-neutral-400 text-sm">GitHub OAuth successful</div>
-          {isAdmin === null && <div className="text-neutral-400 text-sm">Verifying admin…</div>}
-          {isAdmin === false && (
-            <div className="text-red-400 text-sm">Not an admin. Ensure this repo is a fork of the template or you have push access.</div>
-          )}
-          {isAdmin === true && (
-            <div className="text-green-400 text-sm">Admin verified</div>
-          )}
-        </div>
-      </div>
-
-      <div className="rounded border border-white/10 p-4">
-        <div className="text-sm text-neutral-400">Quick Links</div>
-        <ul className="mt-2 list-disc list-inside">
-          <li>
-            <Link href="/editor/docs" className="text-white underline">Inline Docs</Link>
-          </li>
-          <li>
-            <Link href="/editor/settings" className="text-white underline">Settings</Link>
-          </li>
-        </ul>
-      </div>
-
-      {isAdmin ? (
-        <div className="rounded border border-white/10 p-4">
-          <div className="text-sm text-neutral-400">Editor</div>
-          <div className="mt-2 text-white">Puck editor surface goes here.</div>
-        </div>
-      ) : (
-        <div className="rounded border border-white/10 p-4">
-          <div className="text-sm text-neutral-400">Editor</div>
-          <div className="mt-2 text-neutral-400">You need admin access to use the editor.</div>
-        </div>
-      )}
-
-      {isAdmin && (
-        <div className="rounded border border-white/10 p-4">
-          <div className="text-sm text-neutral-400">Version History</div>
-          <div className="mt-2">
-            {versions.length === 0 ? (
-              <div className="text-neutral-400">No versions yet.</div>
-            ) : (
-              <ul className="space-y-1">
-                {versions.map(v => (
-                  <li key={v.id} className="flex items-center justify-between">
-                    <span className="text-sm text-white">{new Date(v.timestamp).toLocaleString()}</span>
-                    <button
-                      className="px-2 py-1 rounded bg-white text-black text-sm"
-                      onClick={async () => {
-                        await fetch("/api/versions-github/home", {
-                          method: "PUT",
-                          headers: { "Content-Type": "application/json" },
-                          body: JSON.stringify({ versionId: v.id })
-                        });
-                        await refreshVersions();
-                      }}
-                    >
-                      Rollback
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        </div>
-      )}
-    </div>
-  );
+  return <PuckEditor />;
 }

@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { getAdminStatus } from "@/lib/repoAdmin";
 import { commitFile } from "@/lib/github";
 
-export async function POST(req: Request, { params }: { params: { slug: string } }) {
+export async function POST(
+  req: Request,
+  context: { params: Promise<{ slug: string }> }
+) {
+  const params = await context.params;
   const admin = await getAdminStatus();
   if (!admin.isAdmin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const body = await req.json().catch(() => null);
@@ -15,7 +19,11 @@ export async function POST(req: Request, { params }: { params: { slug: string } 
   return NextResponse.json({ ok: true, version: ts });
 }
 
-export async function PUT(req: Request, { params }: { params: { slug: string } }) {
+export async function PUT(
+  req: Request,
+  context: { params: Promise<{ slug: string }> }
+) {
+  const params = await context.params;
   const admin = await getAdminStatus();
   if (!admin.isAdmin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   const body = await req.json().catch(() => null);

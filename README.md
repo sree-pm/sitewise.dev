@@ -1,6 +1,6 @@
-# sitewise.dev
+# SiteWise - Production-Ready Website Template
 
-A modern, production-ready website template built with Next.js 15, TypeScript, and Tailwind CSS. Fork it, customize it, and launch your site in minutes—completely free.
+A modern, production-ready website template built with Next.js 15, TypeScript, and Tailwind CSS. Build beautiful websites in minutes with our atomic design system, visual editor, and free hosting.
 
 [![Deploy to Cloudflare Pages](https://img.shields.io/badge/Deploy-Cloudflare%20Pages-orange)](https://pages.cloudflare.com/)
 [![Next.js 15](https://img.shields.io/badge/Next.js-15-black)](https://nextjs.org/)

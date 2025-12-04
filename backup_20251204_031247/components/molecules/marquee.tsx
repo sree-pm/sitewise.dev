@@ -1,0 +1,29 @@
+import { cn } from "@/lib/utils";
+
+export const Marquee = ({
+  items,
+  speed = "fast",
+}: {
+  items: React.ReactNode[];
+  speed?: "fast" | "slow";
+}) => {
+  return (
+    <div className="relative flex w-full overflow-hidden bg-black py-8">
+      <div className={cn("flex animate-scroll gap-16 px-12", speed === "fast" ? "[animation-duration:20s]" : "[animation-duration:40s]")}>
+        {items.map((item, idx) => (
+          <div key={idx} className="flex items-center justify-center flex-shrink-0">
+            {item}
+          </div>
+        ))}
+        {/* Duplicate for seamless loop */}
+        {items.map((item, idx) => (
+          <div key={`dup-${idx}`} className="flex items-center justify-center flex-shrink-0">
+            {item}
+          </div>
+        ))}
+      </div>
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-1/4 bg-gradient-to-r from-black to-transparent"></div>
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-1/4 bg-gradient-to-l from-black to-transparent"></div>
+    </div>
+  );
+};

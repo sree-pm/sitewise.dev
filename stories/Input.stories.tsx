@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Textarea, Select } from '@/components/atoms/inputs';
+import { Input, Textarea, Select } from '@/atomic-design-system/atoms/inputs';
 
 export default {
   title: 'Atoms/Input',

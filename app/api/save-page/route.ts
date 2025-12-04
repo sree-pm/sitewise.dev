@@ -1,9 +1,10 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import { Octokit } from "@octokit/rest";
 import { getAdminStatus } from "@/lib/repoAdmin";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { authOptions } from "@/lib/auth.config";
 
-// Simple in-memory rate limiter: key by IP, window 60s, max 20
+// Simple in-memory rate limiter
 const buckets = new Map<string, { count: number; resetAt: number }>();
 const WINDOW_MS = 60_000;
 const MAX_REQ = 20;
@@ -22,51 +23,10 @@ function rateLimit(key: string) {
   return { allowed: true, remaining: MAX_REQ - bucket.count, resetAt: bucket.resetAt };
 }
 
-export async function POST(req: Request) {
-  // Rate limit by IP (fallback to token string if available later)
-  const ip = (req.headers.get("x-forwarded-for") || req.headers.get("x-real-ip") || "unknown").split(",")[0].trim();
-  const rl = rateLimit(ip);
-  if (!rl.allowed) {
-    return NextResponse.json({ error: "Too Many Requests", resetAt: rl.resetAt }, { status: 429 });
-  }
-
-  const admin = await getAdminStatus();
-  const session = await getServerSession(authOptions);
-  if (!admin.isAdmin) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  // Expect JSON payload: { slug: string, blocks: any, message?: string }
-  const body = await req.json().catch(() => null);
-  if (!body || !body.slug || !body.blocks) {
-    return NextResponse.json({ error: "Invalid payload" }, { status: 400 });
-  }
-
-  // For demo, just echo with attribution. In a real setup, commit to Git or write to storage.
-  return NextResponse.json({
-    ok: true,
-    saved: {
-      slug: body.slug,
-      blocks: body.blocks,
-      editor: { id: session?.user?.email || session?.user?.name, name: session?.user?.name },
-      at: Date.now()
-    }
-  });
-}
-import { NextRequest, NextResponse } from "next/server";
-import { Octokit } from "@octokit/rest";
-
 /**
  * API endpoint to save Puck page data directly to GitHub
  * POST /api/save-page
- * 
- * Body: {
- *   pageData: { content: [], root: {} },  // Puck Data object
- *   message: "Update page content",       // Commit message
- *   token: "github_pat_xxx"               // GitHub PAT (from env or body)
- * }
  */
-
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
